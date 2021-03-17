@@ -5,7 +5,7 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Notes not saved because it is empty</string>
     <string name="add_word">Add Note</string>
-    <string name="grades">Grades</string>
+    <string name="grades">Notes</string>
     <string name="map">Map</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>

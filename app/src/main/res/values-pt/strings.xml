@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notas</string>
+    <string name="action_settings">Defenições</string>
+    <string name="hint_word">Notas</string>
+    <string name="button_save">Guardar</string>
+    <string name="empty_not_saved">Notas nao foram salvas porque estavam vazio</string>
+    <string name="add_word">Add Nota</string>
+    <string name="grades">Nota</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Apagar</string>
+    <string name="map">Mapa</string>
+</resources>
