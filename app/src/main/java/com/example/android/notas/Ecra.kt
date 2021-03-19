@@ -43,20 +43,18 @@ class Ecra : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(this@Ecra, NovaNotaActivity::class.java)
-            intent.putExtra("ID",2)
+
             startActivityForResult(intent, newNotaActivityRequestCode)
         }
         adapter.setOnItemClick(object : NotaAdapter.onItemclick {
-            override fun onEditClick(position: Int){
-               // NotaViewModel.
-               Log.d("ITEM", "poition "+position.toString())
+            override fun onEditClick(position: Int) {
+                Log.d("ITEM", "poition " + position.toString())
                 val intent = Intent(this@Ecra, NovaNotaActivity::class.java)
-                intent.putExtra("ID",position)
-
+                intent.putExtra("ID", position)
                 startActivityForResult(intent, 2)
             }
 
-            override fun onDeleteClick(position: Int){
+            override fun onDeleteClick(position: Int) {
                 NotaViewModel.deleteByNota(position)
             }
         })
@@ -66,9 +64,7 @@ class Ecra : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == newNotaActivityRequestCode && resultCode == Activity.RESULT_OK) {
-
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
-
             if (pnota != null) {
                 val nota = Nota(nota = pnota)
                 NotaViewModel.insert(nota)
@@ -76,19 +72,15 @@ class Ecra : AppCompatActivity() {
         }
 
         if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
-
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
-            val id = data?.getIntExtra(NovaNotaActivity.EXTRA_REPLY_ID,0)
+            val id = data?.getIntExtra(NovaNotaActivity.EXTRA_REPLY_ID, 0)
             if (pnota != null) {
-                val nota = Nota(nota = pnota)
                 if (id != null) {
-                Log.d("ITEM","Nota "+pnota +" "+id)
-                    NotaViewModel.updateNota(id,pnota)
+                    Log.d("ITEM", "Nota " + pnota + " " + id)
+                    NotaViewModel.updateNota(id, pnota)
                 }
             }
-        }
-
-        else {
+        } else {
             Toast.makeText(
                     applicationContext,
                     R.string.empty_not_saved,
