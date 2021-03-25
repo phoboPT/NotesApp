@@ -10,4 +10,6 @@ class Nota(
         // Int? = null so when creating instance id has not to be passed as argument
         @PrimaryKey(autoGenerate = true) val id: Int? = null,
         @ColumnInfo(name = "nota") val nota: String,
-)
+        @ColumnInfo(name = "title") val title: String,
+
+        )

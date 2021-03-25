@@ -13,7 +13,6 @@ interface NotaDao {
     fun getAlphabetizedNotas(): Flow<List<Nota>>
 
 
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(nota: Nota)
 
@@ -23,8 +22,8 @@ interface NotaDao {
     @Query("DELETE FROM nota_table where id == :id")
     suspend fun deleteByNota(id: Int)
 
-    @Query("UPDATE nota_table SET nota=:nota WHERE id == :id")
-    suspend fun updateNota(nota: String, id: Int)
+    @Query("UPDATE nota_table SET nota=:nota,title=:title WHERE id == :id")
+    suspend fun updateNota(nota: String, id: Int, title: String)
 
 
 }

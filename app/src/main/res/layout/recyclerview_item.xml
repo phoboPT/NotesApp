@@ -4,23 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+
+    >
 
     <TextView
         android:id="@+id/textView"
         style="@style/word_title"
         android:layout_width="0dp"
-        android:layout_height="44dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@android:color/darker_gray"
+        android:text="first"
         app:layout_constraintEnd_toStartOf="@+id/btnEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/word_title"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/darker_gray"
+        android:text="hey"
+        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <Button
-        android:id="@+id/btnEdit"
+        android:id="@+id/edit"
         android:layout_width="56dp"
         android:layout_height="44dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
         android:text="@string/edit"
@@ -31,9 +48,9 @@
         android:id="@+id/btnDelete"
         android:layout_width="52dp"
         android:layout_height="43dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:text="@string/delete"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"></Button>
 </androidx.constraintlayout.widget.ConstraintLayout>

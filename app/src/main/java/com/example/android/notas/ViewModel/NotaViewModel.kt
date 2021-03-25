@@ -11,6 +11,9 @@ class NotaViewModel(private val repository: NotaRepository) : ViewModel() {
 
     val allNotas: LiveData<List<Nota>> = repository.allNotas.asLiveData()
 
+    fun getOne(id: Int) = viewModelScope.launch {
+        repository.getOne(id)
+    }
     fun insert(nota: Nota) = viewModelScope.launch {
         repository.insert(nota)
     }
@@ -20,8 +23,8 @@ class NotaViewModel(private val repository: NotaRepository) : ViewModel() {
         repository.deleteNota(id)
     }
 
-    fun updateNota(id: Int, nota: String) = viewModelScope.launch {
-        repository.updateNota(nota,id)
+    fun updateNota(id: Int, nota: String,title:String) = viewModelScope.launch {
+        repository.updateNota(nota,id,title)
     }
 }
 

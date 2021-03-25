@@ -65,19 +65,25 @@ class Ecra : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == newNotaActivityRequestCode && resultCode == Activity.RESULT_OK) {
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
+            val title = data?.getStringExtra( NovaNotaActivity.EXTRA_REPLY_TITLE)
             if (pnota != null) {
-                val nota = Nota(nota = pnota)
-                NotaViewModel.insert(nota)
+                val nota = title?.let { Nota(nota = pnota,title= title) }
+                if (nota != null) {
+                    NotaViewModel.insert(nota)
+                }
             }
         }
 
         if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
             val id = data?.getIntExtra(NovaNotaActivity.EXTRA_REPLY_ID, 0)
+            val title = data?.getStringExtra( NovaNotaActivity.EXTRA_REPLY_TITLE)
             if (pnota != null) {
                 if (id != null) {
                     Log.d("ITEM", "Nota " + pnota + " " + id)
-                    NotaViewModel.updateNota(id, pnota)
+                    if (title != null) {
+                        NotaViewModel.updateNota(id, pnota,title)
+                    }
                 }
             }
         } else {

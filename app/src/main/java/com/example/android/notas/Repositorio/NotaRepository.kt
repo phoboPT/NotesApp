@@ -11,8 +11,13 @@ class NotaRepository(private val notaDao: NotaDao) {
 
     val allNotas: Flow<List<Nota>> = notaDao.getAlphabetizedNotas()
 
-    @Suppress("RedundantSuspendModifier")
 
+
+
+    @Suppress("RedundantSuspendModifier")
+    suspend fun getOne(id: Int) {
+        notaDao.getOne(id)
+    }
     suspend fun insert(nota: Nota) {
         notaDao.insert(nota)
     }
@@ -21,8 +26,8 @@ class NotaRepository(private val notaDao: NotaDao) {
         notaDao.deleteByNota(id)
     }
 
-    suspend fun updateNota(nota: String, id: Int){
-        notaDao.updateNota(nota, id)
+    suspend fun updateNota(nota: String, id: Int,title:String){
+        notaDao.updateNota(nota, id,title)
     }
 
 }

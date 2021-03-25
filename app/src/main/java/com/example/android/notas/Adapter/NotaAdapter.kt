@@ -1,5 +1,7 @@
 package com.example.android.notas.Adapter
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,13 +32,15 @@ class NotaAdapter : ListAdapter<Nota, NotaAdapter.NotaViewHolder>(NotaComparator
 
         val current = getItem(position)
 
-        holder.bind(current.nota, current.id)
+        holder.bind(current.nota, current.id, current.title)
 
 
     }
 
     class NotaViewHolder(itemView: View, onItemclick: onItemclick) : RecyclerView.ViewHolder(itemView) {
         private val notaItemView: TextView = itemView.findViewById(R.id.textView)
+        private val titleItemView: TextView = itemView.findViewById(R.id.textView2)
+        val edit : LinearLayout = itemView.findViewById(R.id.edit)
         val deleteItemView: Button = itemView.findViewById(R.id.btnDelete)
         val upadateItemView: Button = itemView.findViewById(R.id.btnEdit)
 
@@ -51,21 +55,24 @@ class NotaAdapter : ListAdapter<Nota, NotaAdapter.NotaViewHolder>(NotaComparator
 
                     onItemclick.onDeleteClick(idItem!!)
                 }
-                Toast.makeText(v.context, " deele",Toast.LENGTH_LONG).show()
+                Toast.makeText(v.context, " deele", Toast.LENGTH_LONG).show()
             }
 
             upadateItemView.setOnClickListener { v: View ->
                 val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION  && idItem != null) {
+
+
+                if (position != RecyclerView.NO_POSITION && idItem != null) {
                     onItemclick.onEditClick(idItem!!)
                 }
-                Toast.makeText(v.context," update", Toast.LENGTH_LONG).show()
+                Toast.makeText(v.context, " update", Toast.LENGTH_LONG).show()
             }
 
         }
 
-        fun bind(text1: String?, id: Int?) {
+        fun bind(text1: String?, id: Int?, title: String) {
             notaItemView.text = text1
+            titleItemView.text = title
             idItem = id
         }
 
