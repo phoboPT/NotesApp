@@ -40,7 +40,7 @@ class NotaAdapter : ListAdapter<Nota, NotaAdapter.NotaViewHolder>(NotaComparator
     class NotaViewHolder(itemView: View, onItemclick: onItemclick) : RecyclerView.ViewHolder(itemView) {
         private val notaItemView: TextView = itemView.findViewById(R.id.textView)
         private val titleItemView: TextView = itemView.findViewById(R.id.textView2)
-        val edit : LinearLayout = itemView.findViewById(R.id.edit)
+        val edit : LinearLayout = itemView.findViewById(R.id.btnEdit)
         val deleteItemView: Button = itemView.findViewById(R.id.btnDelete)
         val upadateItemView: Button = itemView.findViewById(R.id.btnEdit)
 
