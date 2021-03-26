@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.android.notas.EditarNota"></activity>
+
         <activity android:name="com.example.android.notas.Ecra" />
         <activity
             android:name="com.example.android.notas.MainActivity"
@@ -23,5 +23,6 @@
         </activity>
         <activity android:name="com.example.android.notas.NovaNotaActivity" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET">
+    </uses-permission>
 </manifest>

@@ -4,13 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
+
+
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aplicacao.android.notas.R
@@ -47,10 +46,12 @@ class Ecra : AppCompatActivity() {
             startActivityForResult(intent, newNotaActivityRequestCode)
         }
         adapter.setOnItemClick(object : NotaAdapter.onItemclick {
-            override fun onEditClick(position: Int) {
+            override fun onEditClick(position: Int, nota: String, title: String) {
                 Log.d("ITEM", "poition " + position.toString())
                 val intent = Intent(this@Ecra, NovaNotaActivity::class.java)
                 intent.putExtra("ID", position)
+                intent.putExtra("NOTE",nota)
+                intent.putExtra("TITLE",title)
                 startActivityForResult(intent, 2)
             }
 
@@ -65,33 +66,38 @@ class Ecra : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == newNotaActivityRequestCode && resultCode == Activity.RESULT_OK) {
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
-            val title = data?.getStringExtra( NovaNotaActivity.EXTRA_REPLY_TITLE)
-            if (pnota != null) {
-                val nota = title?.let { Nota(nota = pnota,title= title) }
-                if (nota != null) {
-                    NotaViewModel.insert(nota)
-                }
+            val title = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_TITLE)
+            if (pnota != null && title != null) {
+                val nota = title?.let { Nota(nota = pnota, title = title) }
+
+                NotaViewModel.insert(nota)
             }
+
+        } else if (requestCode == 1) {
+            Log.d("LOG", "EMPTY")
+            Toast.makeText(this,
+                    R.string.empty_not_saved,
+                    Toast.LENGTH_SHORT).show()
         }
 
         if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
             val id = data?.getIntExtra(NovaNotaActivity.EXTRA_REPLY_ID, 0)
-            val title = data?.getStringExtra( NovaNotaActivity.EXTRA_REPLY_TITLE)
-            if (pnota != null) {
+            val title = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_TITLE)
+            if (pnota != null && title != null) {
                 if (id != null) {
                     Log.d("ITEM", "Nota " + pnota + " " + id)
-                    if (title != null) {
-                        NotaViewModel.updateNota(id, pnota,title)
-                    }
+                    NotaViewModel.updateNota(id, pnota, title)
                 }
             }
-        } else {
-            Toast.makeText(
-                    applicationContext,
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show()
+        } else if (requestCode == 2) {
+            Log.d("LOG", "EMPTY")
+            Toast.makeText(this,
+                     R.string.empty_not_saved,
+                    Toast.LENGTH_SHORT).show()
         }
+
+
     }
 
 }

@@ -19,7 +19,7 @@ class NotaAdapter : ListAdapter<Nota, NotaAdapter.NotaViewHolder>(NotaComparator
     }
 
     interface onItemclick {
-        fun onEditClick(position: Int)
+        fun onEditClick(position: Int,nota: String, title: String)
 
         fun onDeleteClick(position: Int)
     }
@@ -38,11 +38,11 @@ class NotaAdapter : ListAdapter<Nota, NotaAdapter.NotaViewHolder>(NotaComparator
     }
 
     class NotaViewHolder(itemView: View, onItemclick: onItemclick) : RecyclerView.ViewHolder(itemView) {
-        private val notaItemView: TextView = itemView.findViewById(R.id.textView)
-        private val titleItemView: TextView = itemView.findViewById(R.id.textView2)
-        val edit : LinearLayout = itemView.findViewById(R.id.btnEdit)
-        val deleteItemView: Button = itemView.findViewById(R.id.btnDelete)
-        val upadateItemView: Button = itemView.findViewById(R.id.btnEdit)
+        private val notaItemView: TextView = itemView.findViewById(R.id.note)
+        private val titleItemView: TextView = itemView.findViewById(R.id.title)
+      //  val edit : LinearLayout = itemView.findViewById(R.id.btnEdit)
+        val deleteItemView: ImageButton = itemView.findViewById(R.id.btnDelete)
+        val upadateItemView: ImageButton = itemView.findViewById(R.id.btnEdit)
 
         var idItem: Int? = 0
 
@@ -63,15 +63,15 @@ class NotaAdapter : ListAdapter<Nota, NotaAdapter.NotaViewHolder>(NotaComparator
 
 
                 if (position != RecyclerView.NO_POSITION && idItem != null) {
-                    onItemclick.onEditClick(idItem!!)
+                    onItemclick.onEditClick(idItem!!,notaItemView.text.toString(), titleItemView.text.toString())
                 }
                 Toast.makeText(v.context, " update", Toast.LENGTH_LONG).show()
             }
 
         }
 
-        fun bind(text1: String?, id: Int?, title: String) {
-            notaItemView.text = text1
+        fun bind(nota: String?, id: Int?, title: String) {
+            notaItemView.text = nota
             titleItemView.text = title
             idItem = id
         }

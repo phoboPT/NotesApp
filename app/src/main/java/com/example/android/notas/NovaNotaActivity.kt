@@ -20,16 +20,21 @@ class NovaNotaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_nota)
         val editnotaView = findViewById<EditText>(R.id.edit_nota)
-
         val titleView = findViewById<EditText>(R.id.titleTB)
+
+
+        var editNota = intent.getStringExtra("NOTE")
+        var editTitle = intent.getStringExtra("TITLE")
+        editnotaView.setText(editNota)
+        titleView.setText(editTitle)
         var ss: Int = intent.getIntExtra("ID", 0)
         val button = findViewById<Button>(R.id.guardar)
-        notasViewModel = ViewModelProvider(this).get(NotaViewModel::class.java)
-        var nota=notasViewModel.getOne(ss)
-        Log.d("ITEM",nota.toString())
+       // notasViewModel = ViewModelProvider(this).get(NotaViewModel::class.java)
+
+     //   Log.d("ITEM",nota.toString())
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(editnotaView.text)) {
+            if (TextUtils.isEmpty(editnotaView.text) || TextUtils.isEmpty(titleView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val nota = editnotaView.text.toString()

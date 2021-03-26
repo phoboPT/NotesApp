@@ -15,9 +15,7 @@ class NotaRepository(private val notaDao: NotaDao) {
 
 
     @Suppress("RedundantSuspendModifier")
-    suspend fun getOne(id: Int) {
-        notaDao.getOne(id)
-    }
+
     suspend fun insert(nota: Nota) {
         notaDao.insert(nota)
     }
