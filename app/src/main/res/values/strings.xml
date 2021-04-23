@@ -10,4 +10,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="title">Title</string>
+    <string name="login">Login</string>
+    <string name="login_form_error">Error comunicating with the service</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

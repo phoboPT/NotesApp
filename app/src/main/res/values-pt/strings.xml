@@ -5,9 +5,13 @@
     <string name="hint_word">Notas</string>
     <string name="button_save">Guardar</string>
     <string name="empty_not_saved">Notas nao foram salvas porque estavam vazio</string>
-    <string name="add_word">Add Nota</string>
+    <string name="add_word">Adicionar nota</string>
     <string name="grades">Nota</string>
     <string name="edit">Editar</string>
     <string name="delete">Apagar</string>
     <string name="map">Mapa</string>
+    <string name="login_form_error">Erro ao comunicar com o serviço</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title">Titulo</string>
+    <string name="login">Entrar</string>
 </resources>

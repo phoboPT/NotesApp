@@ -1,3 +1,4 @@
+
 package com.example.android.notas.entidade
 
 import androidx.room.ColumnInfo
