@@ -13,4 +13,5 @@ class NotasApplication : Application() {
     val database by lazy { NotaDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { NotaRepository(database.NotaDao()) }
 
+
 }
