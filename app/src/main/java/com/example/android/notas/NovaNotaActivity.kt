@@ -14,7 +14,6 @@ import com.example.android.notas.ViewModel.NotaViewModel
 
 
 class NovaNotaActivity : AppCompatActivity() {
-    private lateinit var notasViewModel: NotaViewModel
     public override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -29,9 +28,7 @@ class NovaNotaActivity : AppCompatActivity() {
         titleView.setText(editTitle)
         var ss: Int = intent.getIntExtra("ID", 0)
         val button = findViewById<Button>(R.id.guardar)
-       // notasViewModel = ViewModelProvider(this).get(NotaViewModel::class.java)
 
-     //   Log.d("ITEM",nota.toString())
         button.setOnClickListener {
             val replyIntent = Intent()
             if (TextUtils.isEmpty(editnotaView.text) || TextUtils.isEmpty(titleView.text)) {
@@ -39,14 +36,10 @@ class NovaNotaActivity : AppCompatActivity() {
             } else {
                 val nota = editnotaView.text.toString()
                 val titleView = titleView.text.toString()
-
                 replyIntent.putExtra(EXTRA_REPLY_Nota, nota)
                 replyIntent.putExtra(EXTRA_REPLY_TITLE, titleView)
-
                 replyIntent.putExtra(EXTRA_REPLY_ID, ss)
-
-                setResult(Activity.RESULT_OK, replyIntent)
-            }
+                setResult(Activity.RESULT_OK, replyIntent)            }
             finish()
         }
     }

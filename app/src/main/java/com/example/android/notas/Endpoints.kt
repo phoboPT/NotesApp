@@ -7,8 +7,8 @@ interface EndPoints {
 
     //Endpoint para a realização do login
     @FormUrlEncoded
-    @POST("problemm/add")
-    fun addProblem(@Field("userId") userId: String?, @Field("lat") lat: String?,@Field("long") long: String?,@Field("problem") problem: String?): Call<Problem>
+    @POST("problems/add")
+    fun addProblem(@Field("userId") userId: String?, @Field("lat") lat: String?,@Field("lon") long: String?,@Field("problem") problem: String?): Call<Problem>
 
     //Endpoint para a realização do login
     @FormUrlEncoded
@@ -16,7 +16,12 @@ interface EndPoints {
     fun login(@Field("email") email: String?, @Field("password") password: String?): Call<User>
 
     @GET("users/all")
-    fun getAllOcorrencias(): Call<List<User>>
+    fun getAllUsers(): Call<List<User>>
+
+    @GET("problems/all")
+    fun getAllOcorrencias(): Call<List<Problem>>
+
+
 
 
     //Endpoint para a submissão de uma imagem

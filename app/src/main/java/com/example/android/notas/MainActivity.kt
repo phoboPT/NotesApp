@@ -1,9 +1,9 @@
 package com.example.android.notas
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -25,7 +25,22 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.buttonLogin)
         editNomeUser = findViewById(R.id.editTextTextPersonName)
         editPwd = findViewById(R.id.editTextTextPassword)
-        // sharedPreferences = getSharedPreferences(getString(R.string.user_creds_file_key), Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(getString(R.string.user_creds_file_key), Context.MODE_PRIVATE)
+
+
+        val username = sharedPreferences.getString(getString(R.string.username), "")
+        val password = sharedPreferences.getString(getString(R.string.password), "")
+        val userId = sharedPreferences.getInt(getString(R.string.userId), 0)
+        if (username != "" && password != "") {
+            if (username != null && password != null) {
+                Toast.makeText(
+                        this@MainActivity,
+                        "user " + userId,
+                        Toast.LENGTH_SHORT
+                ).show()
+                login(username, password)
+            }
+        }
 
         bntNotas.setOnClickListener {
             val intent = Intent(this@MainActivity, Ecra::class.java)
@@ -33,24 +48,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            login()
+            login("", "")
         }
-        //  getPointsWS()
-
-
     }
 
-    private fun login() {
-        val nomeUser = editNomeUser.text.toString()
-        val pwd = editPwd.text.toString()
+    private fun login(username: String, password: String) {
+        var nomeUser = editNomeUser.text.toString()
+        var pwd = editPwd.text.toString()
+
+        if (username != "" && password != "") {
+            nomeUser = username
+            pwd = password
+        }
+
         if (nomeUser.isNotEmpty() && pwd.isNotEmpty()) {
             val request = ServiceBuilder.buildService(EndPoints::class.java)
-            // val encryptedUserName = ChCrypto.aesEncrypt(nomeUser, "4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E(")
-            // val encryptedPwd = ChCrypto.aesEncrypt(pwd, "4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E(")
             val call = request.login(email = nomeUser, password = pwd)
             call.enqueue(object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
-
                     if (response.isSuccessful) {
                         if (response.body()?.id!! > 0) {
                             Toast.makeText(
@@ -58,6 +73,14 @@ class MainActivity : AppCompatActivity() {
                                     "Login realizado com sucesso!",
                                     Toast.LENGTH_SHORT
                             ).show()
+
+                            val editor = sharedPreferences.edit()
+
+                            val userId = response.body()!!.id
+                            editor.putString(getString(R.string.username), nomeUser)
+                            editor.putString(getString(R.string.password), pwd)
+                            editor.putInt(getString(R.string.userId), userId)
+                            editor.apply()
 
                             val intent = Intent(this@MainActivity, MapsActivity::class.java)
                             startActivity(intent)
@@ -71,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+
                 override fun onFailure(call: Call<User>, t: Throwable) {
                     Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()
                 }
@@ -80,24 +104,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getPointsWS() {
 
-        val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getAllOcorrencias()
-
-        call.enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                var mapIncidences = response.body()!!
-                Log.d("ITEM", "entrou")
-                for (map in mapIncidences) {
-                    Log.d("ITEM", "hey " + map.toString())
-                }
-            }
-
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                Log.d("ITEM", "erro " + t.message)
-                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 }
