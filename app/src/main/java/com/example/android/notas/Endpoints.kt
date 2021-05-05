@@ -8,7 +8,11 @@ interface EndPoints {
     //Endpoint para a realização do login
     @FormUrlEncoded
     @POST("problems/add")
-    fun addProblem(@Field("userId") userId: String?, @Field("lat") lat: String?,@Field("lon") long: String?,@Field("problem") problem: String?): Call<Problem>
+    fun addProblem(@Field("userId") userId: String?, @Field("lat") lat: String?,@Field("lon") long: String?,@Field("problem") problem: String?,@Field("type") type: String?): Call<Problem>
+
+    @FormUrlEncoded
+    @PUT("problems/update")
+    fun updateProblem(@Field("userId") userId: Int?, @Field("lat") lat: String?,@Field("lon") long: String?,@Field("problem") problem: String?,@Field("id") id: Int?,@Field("type") type: String?): Call<Problem>
 
     //Endpoint para a realização do login
     @FormUrlEncoded

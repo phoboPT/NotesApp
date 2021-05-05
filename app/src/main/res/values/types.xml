@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>@string/traffic</item>
+        <item>@string/accident</item>
+
+    </string-array>
+</resources>

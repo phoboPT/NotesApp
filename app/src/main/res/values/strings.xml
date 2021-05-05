@@ -7,16 +7,22 @@
     <string name="add_word">Add Note</string>
     <string name="grades">Notes</string>
     <string name="map">Map</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
     <string name="title">Title</string>
     <string name="login">Login</string>
     <string name="login_form_error">Error comunicating with the service</string>
     <string name="title_activity_maps">Map</string>
-    <string name="user_creds_file_key">keys</string>
-    <string name="username">email</string>
-    <string name="password">password</string>
-    <string name="userId">userId</string>
+    <string name="user_creds_file_key" translatable="false">keys</string>
+    <string name="username" translatable="false">email</string>
+    <string name="password" translatable="false">password</string>
+    <string name="userId" translatable="false">userId</string>
     <string name="problem">Problem</string>
     <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="empty_fields">You have empty fields</string>
+    <string name="problemLbl">Problem</string>
+    <string name="traffic">Traffic</string>
+    <string name="accident">Accident</string>
+    <string name="description">Description</string>
+    <string name="type">Type</string>
 </resources>

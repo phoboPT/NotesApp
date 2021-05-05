@@ -68,7 +68,7 @@ class Ecra : AppCompatActivity() {
             val pnota = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_Nota)
             val title = data?.getStringExtra(NovaNotaActivity.EXTRA_REPLY_TITLE)
             if (pnota != null && title != null) {
-                val nota = title?.let { Nota(nota = pnota, title = title) }
+                val nota = title.let { Nota(nota = pnota, title = title) }
 
                 NotaViewModel.insert(nota)
             }

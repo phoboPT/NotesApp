@@ -14,4 +14,10 @@
     <string name="title_activity_maps">Map</string>
     <string name="title">Titulo</string>
     <string name="login">Entrar</string>
+    <string name="problem">Problema</string>
+    <string name="save">Guardar</string>
+    <string name="empty_fields">Existem campos vazios</string>
+    <string name="problemLbl">Problema</string>
+    <string name="traffic">Trafego</string>
+    <string name="accident">Acidente</string>
 </resources>
